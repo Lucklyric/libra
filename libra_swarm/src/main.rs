@@ -28,6 +28,8 @@ struct Args {
     /// If unspecified, a temporary dir will be used and auto deleted.
     #[structopt(short = "c", long = "config_dir")]
     pub config_dir: Option<String>,
+    #[structopt(short = "e", long = "faucet_key_path")]     /// swarm.
+    pub faucet_key_path: Option<String>,
     /// If greater than 0, starts a full node swarm connected to the first node in the validator
     /// swarm.
     #[structopt(short = "f", long = "num_full_nodes")]
@@ -39,7 +41,7 @@ fn main() {
     let num_nodes = args.num_nodes.unwrap_or(1);
     let num_full_nodes = args.num_full_nodes.unwrap_or(0);
     let (faucet_account_keypair, faucet_key_file_path, _temp_dir) =
-        generate_keypair::load_faucet_key_or_create_default(None);
+        generate_keypair::load_faucet_key_or_create_default(args.faucet_key_path);
 
     println!(
         "Faucet account created in (loaded from) file {:?}",

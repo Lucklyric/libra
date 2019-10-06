@@ -260,9 +260,9 @@ impl LibraSwarm {
         let dir = match config_dir {
             Some(dir_str) => {
                 let path_buf = PathBuf::from_str(&dir_str).expect("unable to create config dir");
-                if path_buf.exists() {
-                    std::fs::remove_dir_all(dir_str).expect("unable to delete previous config dir");
-                }
+            //    if path_buf.exists() {
+            //        std::fs::remove_dir_all(dir_str).expect("unable to delete previous config dir");
+            //    }
                 std::fs::create_dir_all(dir_str).expect("unable to create config dir");
                 LibraSwarmDir::Persistent(path_buf)
             }
